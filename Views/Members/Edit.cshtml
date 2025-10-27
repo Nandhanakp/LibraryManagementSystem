@@ -1,0 +1,83 @@
+@model NewFolder.Models.Member
+
+@{
+    ViewData["Title"] = "Edit Member";
+}
+
+<h2>Edit Member</h2>
+<hr />
+
+<form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="MemberID" />
+
+    <div class="form-group mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="PhoneNo" class="form-label"></label>
+        <input asp-for="PhoneNo" class="form-control" />
+        <span asp-validation-for="PhoneNo" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Address" class="form-label"></label>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="MembershipDate" class="form-label"></label>
+        <input asp-for="MembershipDate" class="form-control" type="date" />
+        <span asp-validation-for="MembershipDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="MembershipType" class="form-label"></label>
+        <select asp-for="MembershipType" class="form-select">
+            <option value="">--Select--</option>
+            <option>Free</option>
+            <option>Paid</option>
+        </select>
+        <span asp-validation-for="MembershipType" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="DurationInMonths" class="form-label"></label>
+        <input asp-for="DurationInMonths" class="form-control" />
+        <span asp-validation-for="DurationInMonths" class="text-danger"></span>
+    </div>
+
+    <!-- Password Field -->
+    <div class="form-group mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" class="form-control" type="password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+
+    <!-- Role Dropdown -->
+    <div class="form-group mb-3">
+        <label asp-for="Role" class="form-label"></label>
+        <select asp-for="Role" class="form-select">
+            <option value="">--Select Role--</option>
+            <option>Member</option>
+            <option>Staff</option>
+        </select>
+        <span asp-validation-for="Role" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

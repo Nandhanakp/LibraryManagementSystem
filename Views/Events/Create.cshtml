@@ -1,0 +1,51 @@
+@model NewFolder.Models.Event
+
+@{
+    ViewData["Title"] = "Create Event";
+}
+
+<div class="d-flex justify-content-center mt-5">
+    <div class="card shadow-lg p-4" style="width: 100%; max-width: 600px; border-radius: 1rem;">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4 fw-bold text-success">➕ Create New Event</h2>
+
+            <form asp-action="Create" method="post" class="needs-validation" novalidate>
+                <div class="mb-3">
+                    <label asp-for="Title" class="form-label fw-semibold">Event Title</label>
+                    <input asp-for="Title" class="form-control form-control-lg" placeholder="Enter event title" required />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label fw-semibold">Description</label>
+                    <textarea asp-for="Description" class="form-control form-control-lg" rows="3" placeholder="Write event details..." required></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Date" class="form-label fw-semibold">Event Date</label>
+                    <input asp-for="Date" class="form-control form-control-lg" type="date" required />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ImageUrl" class="form-label fw-semibold">Event Image (URL)</label>
+                    <input asp-for="ImageUrl" class="form-control form-control-lg" placeholder="https://example.com/image.jpg" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+
+                <div class="d-grid mt-3">
+                    <button type="submit" class="btn btn-success btn-lg fw-bold">Create Event</button>
+                </div>
+
+                <div class="d-grid mt-2">
+                    <a asp-action="Index" class="btn btn-secondary btn-lg fw-semibold">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

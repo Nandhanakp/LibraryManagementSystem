@@ -1,0 +1,48 @@
+@model IEnumerable<NewFolder.Models.Event>
+
+@{
+    ViewData["Title"] = "Upcoming Events";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">📅 Upcoming Events</h2>
+
+    <!-- Add New Event Button (Staff Only) -->
+    @if (Context.Session.GetString("Role") == "Staff")
+    {
+        <div class="text-end mb-3">
+            <a asp-action="Create" class="btn btn-success">+ Add New Event</a>
+        </div>
+    }
+
+    <div class="row">
+        @foreach (var evt in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card shadow-sm h-100">
+                    @if (!string.IsNullOrEmpty(evt.ImageUrl))
+                    {
+                        <img src="@evt.ImageUrl" class="card-img-top" alt="@evt.Title" style="height:200px; object-fit:cover;" />
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@evt.Title</h5>
+                        <p class="card-text">@evt.Description</p>
+                        <p><strong>Date:</strong> @evt.Date.ToString("MMMM dd, yyyy")</p>
+
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Details" asp-route-id="@evt.Id" class="btn btn-primary btn-sm">Details</a>
+
+                            @if (Context.Session.GetString("Role") == "Staff")
+                            {
+                                <div>
+                                    <a asp-action="Edit" asp-route-id="@evt.Id" class="btn btn-warning btn-sm">Edit</a>
+                                    <a asp-action="Delete" asp-route-id="@evt.Id" class="btn btn-danger btn-sm">Delete</a>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

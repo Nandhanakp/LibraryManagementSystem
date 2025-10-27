@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+<header class="bg-gradient text-dark text-center py-5" style="background: linear-gradient(135deg,#4f8cff,#6a5acd);">
+    <div class="container">
+        <h1 class="display-5 fw-bold">📖 Welcome to Our Digital Library</h1>
+        <p class="lead">Your gateway to knowledge and creativity</p>
+    </div>
+</header>
+
+<!-- Main Content -->
+<main>
+    <div class="container py-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">📚 Books</h5>
+                        <p class="card-text">Explore a wide variety of books and resources to enhance your knowledge.</p>
+<a href="@Url.Action("Index", "Books")" class="btn btn-primary">Browse Books</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">👥 Members</h5>
+                        <p class="card-text">Join our growing community of readers and learners.</p>
+<a href="@Url.Action("Index", "Members")" class="btn btn-success">View Members</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">🎉 Events</h5>
+                        <p class="card-text">Stay updated with the latest events and activities in the library.</p>
+<a href="@Url.Action("Index", "Events")" class="btn btn-warning">View Events</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

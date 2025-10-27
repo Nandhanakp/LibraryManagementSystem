@@ -1,0 +1,44 @@
+@model NewFolder.Models.Service
+
+@{
+    ViewData["Title"] = "Add Service";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4 p-4">
+        <div class="card-header bg-success text-white fw-bold">
+            <h3 class="mb-0">➕ Add New Service</h3>
+        </div>
+
+        <div class="card-body">
+            <form asp-action="Create" method="post" class="row g-3">
+                <div class="col-md-6">
+                    <label asp-for="ServiceName" class="form-label"></label>
+                    <input asp-for="ServiceName" class="form-control" placeholder="Enter service name"/>
+                    <span asp-validation-for="ServiceName" class="text-danger"></span>
+                </div>
+
+                <div class="col-12">
+                    <label asp-for="Description" class="form-label"></label>
+                    <textarea asp-for="Description" class="form-control" rows="4" placeholder="Describe the service"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-4">
+                    <label asp-for="Price" class="form-label"></label>
+                    <input asp-for="Price" class="form-control" placeholder="Enter price"/>
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 mt-3 d-flex gap-2">
+                    <button type="submit" class="btn btn-success flex-grow-1">Add Service</button>
+                    <a asp-action="Index" class="btn btn-secondary flex-grow-1">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,219 @@
+Project Status Log – Digital Library (NewFolder)
+
+Date: 2025-10-03
+Prepared for: Future reference / ChatGPT assistance
+
+1. Project Overview
+
+Project Name: Digital Library Management System
+
+Framework: ASP.NET Core MVC 6
+
+Database: MySQL 8.0.28 (Pomelo.EntityFrameworkCore.MySql)
+
+ORM: Entity Framework Core 6
+
+Front-End: Razor Pages with Bootstrap 5
+
+Purpose: Manage Books, Members, Events, Departments, Employees
+
+2. Current DbContexts
+2.1 ApplicationDbContext
+
+Tables: Books
+
+Status: Migration applied successfully (InitialCreate_Books)
+
+Recent Actions:
+
+Created migration: InitialCreate_Books
+
+Applied migration to hrdb database
+
+DbSet:
+
+public DbSet<Book> Books { get; set; }
+
+2.2 HRDbContext
+
+Tables: Departments, Employees
+
+Status: Migration applied (InitialCreate)
+
+DbSets:
+
+public DbSet<Department> Departments { get; set; }
+public DbSet<Employee> Employees { get; set; }
+
+3. Key Models
+3.1 Book
+public class Book
+{
+    public int Id { get; set; }
+    [Required][StringLength(150)] public string Title { get; set; }
+    [Required][StringLength(100)] public string Author { get; set; }
+    [StringLength(500)] public string Description { get; set; }
+    public string ImageUrl { get; set; }
+    public int Year { get; set; }
+    public string ISBN { get; set; }
+    public decimal Price { get; set; }
+}
+
+3.2 Department & Employee
+
+Department: DepartmentID, DepartmentName, Location
+
+Employee: EmployeeID, EmployeeName, DepartmentID, Doj, Salary
+
+4. Controllers
+
+BooksController: Handles CRUD for Books
+
+Actions: Index, Create (GET/POST), Edit (GET/POST), Delete (GET/POST)
+
+DepartmentController: Handles CRUD for Departments (currently migrated)
+
+5. Views
+
+Books/Index.cshtml: Card layout with image, title, author, description
+
+Home/Index.cshtml: Landing page with sections: Books, Members, Events
+
+Shared/_Layout.cshtml: Bootstrap navbar, footer, renders body, optional scripts section
+
+6. Migrations
+Context	Migration Name	Status
+HRDbContext	InitialCreate	Applied
+ApplicationDbContext	InitialCreate_Books	Applied
+7. Program.cs
+
+Registers ApplicationDbContext with MySQL connection
+
+Configures routing, static files, authorization
+
+Uses default route: {controller=Home}/{action=Index}/{id?}
+
+8. Connection String
+"ConnectionStrings": {
+  "DefaultConnection": "server=localhost;port=3306;database=hrdb;user=root;password=Nandhana@2004;"
+}
+
+9. Project Status
+
+Books table now exists and CRUD works
+
+HRDbContext tables (Departments/Employees) exist
+
+Frontend pages for books are working
+
+EF Core migrations are set up correctly for both DbContexts
+
+10. Notes / Next Steps
+
+Add default image fallback in Books/Index.cshtml
+
+Consider adding validation for ISBN and Year fields
+
+Plan Members & Events modules
+
+Keep this log updated whenever:
+
+Migration is added/applied
+
+New feature/module is added
+
+Table structure changes
+
+Project File Structure – NewFolder
+NewFolder/
+│
+├─ Controllers/
+│   ├─ BooksController.cs
+│   ├─ EventsController.cs
+    ├─ MembersController.cs
+    ├─ HomeController.cs
+    ├─ AboutController.cs
+    └─ ServicesController.cs
+│
+│
+│
+├─ Data/
+│   ├─ ApplicationDbContext.cs
+│   ├─ HRDbContext.cs // this is not using
+├─Migrations/
+│       ├─ApplicationDb/
+                ├─20251003150125_InitialCreate_Books.cs
+                ├─ 20251003150125_InitialCreate_Books.Designer.cs
+                ├─ ApplicationDbContextModelSnapshot.cs
+                ├─Migrations\ApplicationDb\20251003154430_AddEventModel.cs
+                ├─Migrations\ApplicationDb\20251003154430_AddEventModel.Designer.cs
+
+│
+├─ Models/
+│   ├─ Book.cs
+│   ├─ Events.cs
+│   ├─ Service.cs
+│   ├─ Member.cs
+    ├─ ErrorViwModel.cs 
+│   └─ HRDbContext.cs 
+
+│
+├─ Views/
+│   ├─ Contact/
+│   │   ├─ Index.cshtml
+│   ├─ Messages/
+│   │   ├─ Index.cshtml
+│   ├─ About/
+│   │   ├─ Index.cshtml
+│   ├─ Books/
+│   │   ├─ Index.cshtml
+│   │   ├─ Create.cshtml
+│   │   ├─ Delete.cshtml
+│   │   ├─ Details.cshtml
+│   │   ├─ Edit.cshtml  
+│   ├─ Events/
+│   │   ├─ Index.cshtml
+│   │   ├─ Create.cshtml
+│   │   ├─ Delete.cshtml
+│   │   ├─ Details.cshtml
+│   │   ├─ Edit.cshtml    
+│   ├─ Events/
+│   │   ├─ Index.cshtml
+│   │   ├─ Create.cshtml
+│   │   ├─ Delete.cshtml
+│   │   ├─ Details.cshtml
+│   │   ├─ Edit.cshtml  
+│   ├─ Members/
+│   │   ├─ Index.cshtml
+│   │   ├─ Create.cshtml
+│   │   ├─ Delete.cshtml
+│   │   ├─ Details.cshtml
+│   │   ├─ Edit.cshtml 
+│   ├─ Services/
+│   │   ├─ Index.cshtml
+│   │   ├─ Create.cshtml
+│   
+│   │
+│   ├─ Home/
+│   │   ├─ Index.cshtml
+│   │   ├─ Privacy.cshtml
+
+│   │
+│   └─ Shared/
+│       ├─ _Layout.cshtml
+│       ├─ _Layout.cshtml.css
+│       ├─ Error.cshtml
+│       └─ _ValidationScriptsPartial.cshtml 
+│   └─ _ViewImports.cshtml
+│   └─ _ViewStart.cshtml
+│
+├─ wwwroot/
+│   ├─ css/
+│   ├─ js/
+│   └─ images/
+│
+├─ appsettings.json
+├─ appsettings.Development.json
+├─ NewFolder.csproj
+├─ Program.cs
+├─ ProjectStatus_Log.txt  

@@ -1,0 +1,42 @@
+@model NewFolder.Models.Member
+
+@{
+    ViewData["Title"] = "Member Details";
+}
+
+<h2>Member Details</h2>
+<hr />
+
+<div class="mb-3">
+    <dl class="row">
+        <dt class="col-sm-3">Name</dt>
+        <dd class="col-sm-9">@Model.Name</dd>
+
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">@Model.Email</dd>
+
+        <dt class="col-sm-3">Phone No</dt>
+        <dd class="col-sm-9">@Model.PhoneNo</dd>
+
+        <dt class="col-sm-3">Address</dt>
+        <dd class="col-sm-9">@Model.Address</dd>
+
+        <dt class="col-sm-3">Membership Date</dt>
+        <dd class="col-sm-9">@Model.MembershipDate.ToShortDateString()</dd>
+
+        <dt class="col-sm-3">Membership Type</dt>
+        <dd class="col-sm-9">@Model.MembershipType</dd>
+
+        <dt class="col-sm-3">Duration (Months)</dt>
+        <dd class="col-sm-9">@Model.DurationInMonths</dd>
+
+        <dt class="col-sm-3">Role</dt>
+        <dd class="col-sm-9">@Model.Role</dd>
+
+        <dt class="col-sm-3">Password</dt>
+        <dd class="col-sm-9">@Model.Password</dd>
+    </dl>
+</div>
+
+<a asp-action="Edit" asp-route-id="@Model.MemberID" class="btn btn-warning">Edit</a>
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>

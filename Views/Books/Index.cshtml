@@ -1,0 +1,58 @@
+@model IEnumerable<NewFolder.Models.Book>
+
+@{
+    ViewData["Title"] = "Available Books";
+}
+
+<div class="container mt-4">
+    <h2 class="text-center mb-4">📚 Available Books</h2>
+
+    <!-- Add Book Button (Visible only to Staff) -->
+    @if (Context.Session.GetString("Role") == "Staff")
+    {
+        <div class="d-flex justify-content-end mb-3">
+            <a asp-action="Create" class="btn btn-primary">ADD </a>
+        </div>
+    }
+
+    <div class="row">
+        @foreach (var book in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <!-- Image with fallback -->
+                    <img src="@(!string.IsNullOrEmpty(book.ImageUrl) ? book.ImageUrl : "/images/default-book.png")" 
+                         class="card-img-top" 
+                         alt="@book.Title" 
+                         style="height:200px; object-fit:cover;" />
+
+                    <div class="card-body">
+                        <h5 class="card-title">@book.Title</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">
+                            by @book.Author (@book.Year)
+                        </h6>
+                        <p class="card-text">
+                            @(!string.IsNullOrEmpty(book.Description) 
+                                ? book.Description 
+                                : "No description available.")
+                        </p>
+                        <p><strong>ISBN:</strong> @book.ISBN</p>
+                        <p><strong>Price:</strong> $@book.Price</p>
+                    </div>
+
+                    <!-- CRUD Buttons -->
+                    <div class="card-footer d-flex justify-content-between">
+                        @if (Context.Session.GetString("Role") == "Staff")
+                        {
+                            <div>
+                                <a asp-action="Edit" asp-route-id="@book.Id" class="btn btn-sm btn-warning">Edit</a>
+                                <a asp-action="Delete" asp-route-id="@book.Id" class="btn btn-sm btn-danger">Delete</a>
+                            </div>
+                        }
+                        <a asp-action="Details" asp-route-id="@book.Id" class="btn btn-sm btn-info">Details</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

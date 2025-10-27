@@ -1,0 +1,70 @@
+@model NewFolder.Models.Book
+
+@{
+    ViewData["Title"] = "Edit Book";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg rounded-4 p-4">
+        <div class="card-header bg-primary text-white fw-bold">
+            <h3 class="mb-0">✏️ Edit Book</h3>
+        </div>
+
+        <div class="card-body">
+            <form asp-action="Edit" method="post" class="row g-3">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="col-md-6">
+                    <label asp-for="Title" class="form-label"></label>
+                    <input asp-for="Title" class="form-control" placeholder="Enter book title" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Author" class="form-label"></label>
+                    <input asp-for="Author" class="form-control" placeholder="Enter author name" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+
+                <div class="col-12">
+                    <label asp-for="Description" class="form-label"></label>
+                    <textarea asp-for="Description" class="form-control" rows="4" placeholder="Enter book description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="ImageUrl" class="form-label"></label>
+                    <input asp-for="ImageUrl" class="form-control" placeholder="Enter image URL" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-3">
+                    <label asp-for="Year" class="form-label"></label>
+                    <input asp-for="Year" class="form-control" placeholder="YYYY" />
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-3">
+                    <label asp-for="ISBN" class="form-label"></label>
+                    <input asp-for="ISBN" class="form-control" placeholder="ISBN number" />
+                    <span asp-validation-for="ISBN" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-3">
+                    <label asp-for="Price" class="form-label"></label>
+                    <input asp-for="Price" class="form-control" placeholder="Enter price" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 mt-4 d-flex gap-2">
+                    <button type="submit" class="btn btn-primary flex-grow-1">Update Book</button>
+                    <a asp-action="Index" class="btn btn-secondary flex-grow-1">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

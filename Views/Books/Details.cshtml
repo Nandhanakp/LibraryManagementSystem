@@ -1,0 +1,28 @@
+@model NewFolder.Models.Book
+
+@{
+    ViewData["Title"] = "Book Details";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">📖 Book Details</h2>
+
+    <div class="card shadow-sm">
+        <img src="@(!string.IsNullOrEmpty(Model.ImageUrl) ? Model.ImageUrl : "/images/default-book.png")" 
+             class="card-img-top" 
+             style="height:300px; object-fit:cover;" />
+
+        <div class="card-body">
+            <h4 class="card-title">@Model.Title</h4>
+            <h6 class="text-muted">by @Model.Author (@Model.Year)</h6>
+            <p class="card-text">@Model.Description</p>
+            <p><strong>ISBN:</strong> @Model.ISBN</p>
+            <p><strong>Price:</strong> $@Model.Price</p>
+        </div>
+    </div>
+
+    <div class="mt-3">
+        <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+        <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    </div>
+</div>

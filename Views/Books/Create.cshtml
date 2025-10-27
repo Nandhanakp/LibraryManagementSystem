@@ -1,0 +1,62 @@
+@model NewFolder.Models.Book
+
+@{
+    ViewData["Title"] = "Add New Book";
+}
+
+<div class="d-flex justify-content-center mt-5">
+    <div class="card shadow-lg p-4" style="width: 100%; max-width: 700px; border-radius: 1rem;">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4 fw-bold text-success">Add New Book</h2>
+
+            <form asp-action="Create" method="post" class="row g-3">
+                <div class="col-md-6">
+                    <label asp-for="Title" class="form-label fw-semibold"></label>
+                    <input asp-for="Title" class="form-control form-control-lg" placeholder="Book Title" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="Author" class="form-label fw-semibold"></label>
+                    <input asp-for="Author" class="form-control form-control-lg" placeholder="Author Name" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+
+                <div class="col-12">
+                    <label asp-for="Description" class="form-label fw-semibold"></label>
+                    <textarea asp-for="Description" class="form-control form-control-lg" rows="4" placeholder="Book Description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-6">
+                    <label asp-for="ImageUrl" class="form-label fw-semibold"></label>
+                    <input asp-for="ImageUrl" class="form-control form-control-lg" placeholder="Image URL" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-3">
+                    <label asp-for="Year" class="form-label fw-semibold"></label>
+                    <input asp-for="Year" class="form-control form-control-lg" placeholder="Year" />
+                    <span asp-validation-for="Year" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-3">
+                    <label asp-for="ISBN" class="form-label fw-semibold"></label>
+                    <input asp-for="ISBN" class="form-control form-control-lg" placeholder="ISBN Number" />
+                    <span asp-validation-for="ISBN" class="text-danger"></span>
+                </div>
+
+                <div class="col-md-3">
+                    <label asp-for="Price" class="form-label fw-semibold"></label>
+                    <input asp-for="Price" class="form-control form-control-lg" placeholder="Price" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+
+                <div class="col-12 mt-3 d-flex justify-content-between">
+                    <button type="submit" class="btn btn-success btn-lg fw-bold">Save</button>
+                    <a asp-action="Index" class="btn btn-secondary btn-lg fw-bold">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

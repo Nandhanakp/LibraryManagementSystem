@@ -1,0 +1,47 @@
+@model NewFolder.Models.Member
+
+@{
+    ViewData["Title"] = "Delete Member";
+}
+
+<h2>Delete Member</h2>
+<hr />
+
+<h4>Are you sure you want to delete this member?</h4>
+
+<div class="mb-3">
+    <dl class="row">
+        <dt class="col-sm-3">Name</dt>
+        <dd class="col-sm-9">@Model.Name</dd>
+
+        <dt class="col-sm-3">Email</dt>
+        <dd class="col-sm-9">@Model.Email</dd>
+
+        <dt class="col-sm-3">Phone No</dt>
+        <dd class="col-sm-9">@Model.PhoneNo</dd>
+
+        <dt class="col-sm-3">Address</dt>
+        <dd class="col-sm-9">@Model.Address</dd>
+
+        <dt class="col-sm-3">Membership Date</dt>
+        <dd class="col-sm-9">@Model.MembershipDate.ToShortDateString()</dd>
+
+        <dt class="col-sm-3">Membership Type</dt>
+        <dd class="col-sm-9">@Model.MembershipType</dd>
+
+        <dt class="col-sm-3">Duration (Months)</dt>
+        <dd class="col-sm-9">@Model.DurationInMonths</dd>
+
+        <dt class="col-sm-3">Role</dt>
+        <dd class="col-sm-9">@Model.Role</dd>
+
+        <dt class="col-sm-3">Password</dt>
+        <dd class="col-sm-9">@Model.Password</dd>
+    </dl>
+</div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="MemberID" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

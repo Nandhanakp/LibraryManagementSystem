@@ -1,0 +1,54 @@
+@model IEnumerable<NewFolder.Models.Member>
+
+@{
+    ViewData["Title"] = "Members List";
+}
+
+<h2>Members List</h2>
+
+<!-- Add New Member Button (Staff Only) -->
+@if (Context.Session.GetString("Role") == "Staff")
+{
+    <p>
+        <a asp-action="Create" class="btn btn-primary">Add New Member</a>
+    </p>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone No</th>
+            <th>Address</th>
+            <th>Membership Date</th>
+            <th>Membership Type</th>
+            <th>Duration (Months)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var m in Model)
+    {
+        <tr>
+            <td>@m.Name</td>
+            <td>@m.Email</td>
+            <td>@m.PhoneNo</td>
+            <td>@m.Address</td>
+            <td>@m.MembershipDate.ToShortDateString()</td>
+            <td>@m.MembershipType</td>
+            <td>@m.DurationInMonths</td>
+            <td>
+                <a asp-action="Details" asp-route-id="@m.MemberID" class="btn btn-info btn-sm">Details</a>
+
+                <!-- Edit/Delete Buttons (Staff Only) -->
+                @if (Context.Session.GetString("Role") == "Staff")
+                {
+                    <a asp-action="Edit" asp-route-id="@m.MemberID" class="btn btn-warning btn-sm">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@m.MemberID" class="btn btn-danger btn-sm">Delete</a>
+                }
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
